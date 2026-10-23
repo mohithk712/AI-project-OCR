@@ -8,6 +8,7 @@ import {
   AlertTriangle,
   CheckCircle2,
   Download,
+  FileText,
   Monitor,
   Moon,
   Sun,
@@ -44,6 +45,7 @@ import {
   type ChatMessage,
 } from './components/GeminiCopilotView';
 import { DeliverablesView } from './components/DeliverablesView';
+import { downloadApproachPdf } from './utils/generateApproachPdf';
 
 type ActiveTab = 'tree' | 'diff' | 'staleness' | 'copilot' | 'deliverables';
 export type ThemeMode = 'light' | 'dark' | 'system';
@@ -882,53 +884,65 @@ export default function App() {
             <span>{tooltipSummary.detailLine}</span>
           </div>
 
-          {/* Theme Selector: Light | Dark | System */}
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs text-slate-500 font-medium">Theme:</span>
-            <div
-              role="group"
-              aria-label="Theme mode selector"
-              className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg border border-slate-200"
+          {/* Quick Approach PDF Download + Theme Selector */}
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <button
+              type="button"
+              onClick={() => downloadApproachPdf()}
+              className="px-3 py-1.5 text-xs font-semibold text-slate-900 bg-sky-50 border border-sky-200 rounded-lg hover:bg-sky-100 transition-colors flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+              title="Download 5-page Assignment Approach Document PDF with Flowcharts for Google Form Submission"
             >
-              <button
-                type="button"
-                onClick={() => setThemeMode('light')}
-                aria-pressed={themeMode === 'light'}
-                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                  themeMode === 'light'
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
+              <FileText className="w-3.5 h-3.5 text-sky-700" />
+              Download Approach PDF (GForm)
+            </button>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-xs text-slate-500 font-medium">Theme:</span>
+              <div
+                role="group"
+                aria-label="Theme mode selector"
+                className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg border border-slate-200"
               >
-                <Sun className="w-3.5 h-3.5" />
-                Light
-              </button>
-              <button
-                type="button"
-                onClick={() => setThemeMode('dark')}
-                aria-pressed={themeMode === 'dark'}
-                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                  themeMode === 'dark'
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Moon className="w-3.5 h-3.5" />
-                Dark
-              </button>
-              <button
-                type="button"
-                onClick={() => setThemeMode('system')}
-                aria-pressed={themeMode === 'system'}
-                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                  themeMode === 'system'
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Monitor className="w-3.5 h-3.5" />
-                System
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setThemeMode('light')}
+                  aria-pressed={themeMode === 'light'}
+                  className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
+                    themeMode === 'light'
+                      ? 'bg-slate-900 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Sun className="w-3.5 h-3.5" />
+                  Light
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setThemeMode('dark')}
+                  aria-pressed={themeMode === 'dark'}
+                  className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
+                    themeMode === 'dark'
+                      ? 'bg-slate-900 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Moon className="w-3.5 h-3.5" />
+                  Dark
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setThemeMode('system')}
+                  aria-pressed={themeMode === 'system'}
+                  className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
+                    themeMode === 'system'
+                      ? 'bg-slate-900 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Monitor className="w-3.5 h-3.5" />
+                  System
+                </button>
+              </div>
             </div>
           </div>
         </div>
