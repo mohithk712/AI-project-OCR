@@ -1,0 +1,6 @@
+{
+  "name": "CardioTrack CT-200 Regulatory Traceability & Staleness Engine",
+  "description": "IEC 62304 & ISO 13485 regulatory document intelligence, PDF hierarchy parser, non-destructive v1-to-v2 versioning, LLM QA test suite generator, and 3-tier transitive staleness engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
